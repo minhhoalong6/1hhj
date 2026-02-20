@@ -284,6 +284,41 @@ RunService.RenderStepped:Connect(function()
         textLabel.Text = string.format("FPS: %d", math.floor(fps))
     end
 end)
+local discord = Instance.new("TextLabel")
+discord.AnchorPoint = Vector2.new(0.5, 0)
+discord.Position = UDim2.new(0.5, 0, 0.86, 0)
+discord.Size = UDim2.new(0, 450, 0, 25)
+discord.BackgroundTransparency = 1
+discord.Text = "Status : minhhoalong6"
+discord.Font = Enum.Font.GothamSemibold
+discord.TextScaled = true
+discord.TextColor3 = Color3.fromRGB(255, 230, 90)
+discord.TextStrokeTransparency = 0.5
+discord.Parent = main
+
+task.spawn(function()
+	while task.wait(0.05) do
+		local tween = TweenService:Create(icon, TweenInfo.new(0.6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, true), {
+			ImageTransparency = 0.1
+		})
+		tween:Play()
+		tween.Completed:Wait()
+	end
+end)
+
+
+local frames, lastTime, fps = 0, tick(), 0
+RunService.Heartbeat:Connect(function()
+	frames += 1
+	if tick() - lastTime >= 1 then
+		fps = frames
+		frames = 0
+		lastTime = tick()
+		local ping = math.floor(Stats.Network.ServerStatsItem["Data Ping"]:GetValue() or 0)
+		local players = #Players:GetPlayers()
+		info.Text = string.format("FPS: %d | Executor: %d | Players: %d | Ping: %dms", fps, players, ping)
+	end
+end)
 
 spawn(rainbowColor)
 
@@ -3371,8 +3406,8 @@ end
 local library = {}
 
 _G.Color = Color3.fromRGB(0, 0, 255)
-_G.imageLogo = "rbxassetid://79932823311771"
-_G.Logo = "rbxassetid://79932823311771"
+_G.imageLogo = "rbxassetid://96118183256685"
+_G.Logo = "rbxassetid://96118183256685"
 _G.NameHub = "tiktok.com/@tirohub"
 _G.Title = "khanghub"
 -----------------------------------------------------------------
@@ -3409,7 +3444,7 @@ ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(0.120833337 - 0.10, 0, 0.0952890813 + 0.01, 0)
 ImageButton.Size = UDim2.new(0, 50, 0, 50)
 ImageButton.Draggable = true
-ImageButton.Image = "rbxassetid://79932823311771"
+ImageButton.Image = "rbxassetid://96118183256685"
 
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
@@ -3465,7 +3500,7 @@ function CircleClick(Button, X, Y)
 				Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Circle.BackgroundTransparency = 1.000
 				Circle.ZIndex = 10
-				Circle.Image = "rbxassetid://79932823311771"
+				Circle.Image = "rbxassetid://96118183256685"
 				Circle.ImageColor3 = Color3.fromRGB(255, 255, 255)
 				Circle.ImageTransparency = 0.7
 				local NewX = X - Circle.AbsolutePosition.X
@@ -12058,7 +12093,7 @@ game:GetService("StarterGui"):SetCore(
     {
         Title = "khanghub",
         Text = "Loading Success !",
-        Icon = "rbxassetid://79932823311771",
+        Icon = "rbxassetid://96118183256685",
         Duration = 5
     }
 )
